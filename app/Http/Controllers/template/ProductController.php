@@ -20,10 +20,20 @@ class ProductController extends Controller
         return view('home', compact('products','categories'));
     }
 
-    public function index()
+    public function viewProduct(Request $request)
     {
-        $products = Product::all();
         $categories = Category::all();
+
+        if (isset($request['search']) && $request['search']) {
+            $search = $request['search'];
+ 
+            $products = Product::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->get();
+        } else {
+            $products = Product::orderBy('id','asc')->get();
+        }
+
         return view('product', compact('products','categories'));
     }
 

@@ -22,6 +22,9 @@
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-6">
                         <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                        @if ($errors->has('name'))
+                            <div class="error-validate text-danger">{{ $errors->first('name') }}</div>
+                      @endif
                     </div>
                 </div>
             </div>

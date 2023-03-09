@@ -34,72 +34,89 @@
                 </div>
 
             </div>
-            <div class="col-xl-9 col-lg-8 col-md-7">
-                <!-- Start Filter Bar -->
-                <div class="filter-bar d-flex flex-wrap align-items-center">
-                    <div class="sorting mr-auto">
-                        <select id="changeShow">
-                            <option value="10">Show 10</option>
-                            <option value="20">Show 20</option>
-                            <option value="50">Show 50</option>
-                        </select>
+            <form method="get" action="{{route('product')}}" class="col-xl-9 col-lg-8 col-md-7">
+                <div class="">
+                    <!-- Start Filter Bar -->
+                    <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class="sorting mr-auto">
+                            <select id="changeShow">
+                                <option value="10">Show 10</option>
+                                <option value="20">Show 20</option>
+                                <option value="50">Show 50</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!-- End Filter Bar -->
-                <!-- Start Best Seller -->
-                <section class="lattest-product-area pb-40 category-list">
-                    <div class="row" id="paginated-list" data-current-page="1" aria-live="polite">
-                        @foreach ($products as $item)
-                            <div class="col-lg-4 col-md-6 list-item">
-                                <div class="single-product">
-                                   <a href="{{ route('product.detail' , ['id' => $item->id] ) }}"><img class="img-fluid" style="max-width:250px !important; max-height:250px !important;"
-                                        src="{{ asset('storage/image/' . $item->image) }}" width="300px" alt=""/></a>
-                                    <div class="product-details">
-                                        <h6>{{ $item->name }}</h6>
-                                        <div class="price">
-                                            <h6>@convert($item->price)</h6>
-                                        </div>
-                                        <div class="prd-bottom">
-                                            <a href="{{ route('addCart' , ['id' => $item->id] ) }}" class="social-info">
-                                                <span class="ti-bag"></span>
-                                                <p class="hover-text">add to bag</p>
-                                            </a>
+                    <div class="mt-3 form-group col-10 d-flex">
+                        <input type="text" name="search" id="search"  value="{{Request::get('search')}}" class="form-control" placeholder="Search" />
+                        <button type="submit" class="btn btn-primary" style="margin-left: 16px;">Search</button>
+                    </div>
+            
+                    <!-- End Filter Bar -->
+                    <!-- Start Best Seller -->
+                    <section class="lattest-product-area pb-40 category-list" style="color: red; padding: 27px">
+                        <div class="row" id="paginated-list" data-current-page="1" aria-live="polite">
+                            
+                        @if(count($products) == 0)
+                            <tr>
+                                <td colspan="7">Không có dữ liêu</td>
+                            </tr>
+                        @else
+                            @foreach ($products as $item)
+                                <div class="col-lg-4 col-md-6 list-item">
+                                    <div class="single-product">
+                                       <a href="{{ route('product.detail' , ['id' => $item->id] ) }}"><img class="img-fluid" style="max-width:250px !important; max-height:250px !important;"
+                                            src="{{ asset('storage/image/' . $item->image) }}" width="300px" alt=""/></a>
+                                        <div class="product-details">
+                                            <h6>{{ $item->name }}</h6>
+                                            <div class="price">
+                                                <h6>@convert($item->price)</h6>
+                                            </div>
+                                            <div class="prd-bottom">
+                                                <a href="{{ route('addCart' , ['id' => $item->id] ) }}" class="social-info">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-suit-heart-fill text-danger" viewBox="0 0 16 16">
+                                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                                      </svg>
+                                                    <p class="hover-text">add cart</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </section>
-                <!-- End Best Seller -->
-                <!-- Start Filter Bar -->
-                <div class="filter-bar d-flex flex-wrap align-items-center">
-                    <div class=" mr-auto">
-                        <select id="changeShow" >
-                            <option value="10">Show 10</option>
-                            <option value="20">Show 20</option>
-                            <option value="50">Show 50</option>
-                        </select>
-                    </div>
-                    <nav class="pagination-container">
-                        <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
-                            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                        </button>
-
-                        <div id="pagination-numbers">
-
+                            @endforeach
+                        @endif    
                         </div>
-
-                        <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
-                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                        </button>
-                    </nav>
-
+                    </section>
+                    <!-- End Best Seller -->
+                    <!-- Start Filter Bar -->
+                    <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class=" mr-auto">
+                            <select id="changeShow" >
+                                <option value="10">Show 10</option>
+                                <option value="20">Show 20</option>
+                                <option value="50">Show 50</option>
+                            </select>
+                        </div>
+                        <nav class="pagination-container">
+                            <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+                                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            </button>
+    
+                            <div id="pagination-numbers">
+    
+                            </div>
+    
+                            <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </nav>
+    
+                    </div>
+                    <!-- End Filter Bar -->
+    
+    
                 </div>
-                <!-- End Filter Bar -->
-
-
-            </div>
+            </form>
+ 
         </div>
     </div>
 @endsection
