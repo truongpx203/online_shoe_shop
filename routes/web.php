@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +20,9 @@ Route::get('/', function () {
 
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    
+
+
     Route::get('/', [App\Http\Controllers\Controller::class , 'index'])->name('dashboard');
 
     Route::controller(App\Http\Controllers\UserController::class)->prefix('users')->name('users.')->group(function () {
@@ -73,6 +76,18 @@ Route::get('/logout', [App\Http\Controllers\template\ProductController::class , 
 
 Route::get('/registration', [App\Http\Controllers\template\ProductController::class , 'registration'])->name('registration');
 Route::post('/store-regist', [App\Http\Controllers\template\ProductController::class , 'storeRegist'])->name('storeRegist');
+
+
+Route::controller(App\Http\Controllers\ResetPasswordController::class)->prefix('resetPassword')->name('resetPassword.')->group(function () {
+
+    Route::get('create', 'create')->name('create');
+
+    Route::post('store', 'store')->name('store');
+
+    Route::get('reset-password/{token}', 'showResetPasswordForm')->name('resetPassword');
+
+    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
+});
 
 Route::get('/contact', function (){
     return view('contact');

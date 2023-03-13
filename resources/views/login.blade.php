@@ -69,7 +69,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<a href="{{route('resetPassword.create')}}">Forgot Password?</a>
 							</div>
 						</form>
 					</div>
