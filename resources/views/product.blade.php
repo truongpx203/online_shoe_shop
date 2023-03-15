@@ -24,17 +24,18 @@
                     <div class="head">Browse Categories</div>
                     <ul class="main-categories">
                         @foreach ($categories as $category)
-                            <li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable"
-                                    aria-expanded="false" aria-controls="fruitsVegetable"><span
-                                        class="lnr lnr-arrow-right"></span>{{ $category->name }}<span
-                                        class="number"></span></a>
+                            <li class="main-nav-list">
+                                <a  href="{{route('product', ['id' => $category->id])}}">
+                                    {{ $category->name }}
+                                </a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
 
             </div>
-            <form method="get" action="{{route('product')}}" class="col-xl-9 col-lg-8 col-md-7">
+
+            <form method="get" action="{{route('product', ['id' => $category->id])}}" class="col-xl-9 col-lg-8 col-md-7">
                 <div class="">
                     <!-- Start Filter Bar -->
                     <div class="filter-bar d-flex flex-wrap align-items-center">

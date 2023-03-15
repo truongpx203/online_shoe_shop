@@ -59,7 +59,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('/', [App\Http\Controllers\template\ProductController::class , 'home'])->name('home');
-Route::get('/product', [App\Http\Controllers\template\ProductController::class , 'viewProduct'])->name('product');
+Route::get('/product_category/{id}', [App\Http\Controllers\template\ProductController::class , 'viewProduct'])->name('product');
 Route::get('/product/{id}', [App\Http\Controllers\template\ProductController::class , 'show'])->name('product.detail');
 
 Route::controller(App\Http\Controllers\template\ProductController::class)->prefix('cart')->group(function () {

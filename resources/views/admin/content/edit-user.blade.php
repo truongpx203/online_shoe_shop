@@ -15,7 +15,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" method="post" action="{{ route('users.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('users.edit', $user->id) }}">
             @csrf
             <div class="card-body">
                 <div class="form-group">

@@ -49,6 +49,7 @@ class UserController extends Controller
     {
         $user = User::find($request->id);
         $user->fill($request->all());
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('users.index');
     }
