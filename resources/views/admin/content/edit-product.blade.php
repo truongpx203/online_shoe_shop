@@ -15,7 +15,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" method="post" action="{{ route('product.edit' , $product->id) }}" enctype="multipart/form-data">
+        <form class="form-horizontal" method="post" action="{{ route('product.edit', $product->id) }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}">
             <div class="card-body">

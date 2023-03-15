@@ -20,7 +20,7 @@ class ProductController extends Controller
         return view('home', compact('products','categories'));
     }
 
-    public function viewProduct(Request $request)
+    public function viewProduct(Request $request, $id)
     {
         $categories = Category::all();
 
@@ -31,7 +31,8 @@ class ProductController extends Controller
                 $query->where('name', 'like', '%' . $search . '%');
             })->get();
         } else {
-            $products = Product::orderBy('id','asc')->get();
+
+            $products = Product::where('id_category', $id)->orderBy('id','asc')->get();
         }
 
         return view('product', compact('products','categories'));
@@ -159,6 +160,7 @@ class ProductController extends Controller
             $request->session()->regenerate();
             return redirect()->route('home');
         }
+
         return back()->withErrors(['errors_login' => 'account password incorrect' ,])->onlyInput('username');
     }
 

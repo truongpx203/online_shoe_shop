@@ -16,13 +16,16 @@
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                         <li class="nav-item {{ (request()->is('product')) ? 'active' : '' }}">
-                            <a href="{{ route('product') }}" class="nav-link" role="button" aria-haspopup="true"
+                            <a href="{{route('product', ['id' => $category->id]) }}" class="nav-link" role="button" aria-haspopup="true"
                                aria-expanded="false">Product</a>
                         </li>
                         <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item "><a href="{{ route('cart') }}" class="cart "><span class="ti-bag {{ (request()->is('cart*')) ? 'text-warning' : '' }}"></span></a></li>
+                      
+                        {{-- $a = count(session()->get('cart')) --}}
+
                             @if(Auth::check())
                             <li class="nav-item dropdown">
                                 <span class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
