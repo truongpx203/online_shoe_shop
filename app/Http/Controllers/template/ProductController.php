@@ -38,6 +38,25 @@ class ProductController extends Controller
         return view('product', compact('products','categories'));
     }
 
+    // indexProduct
+    public function indexProduct(Request $request)
+    {
+        $categories = Category::all();
+
+        if (isset($request['search']) && $request['search']) {
+            $search = $request['search'];
+ 
+            $products = Product::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->get();
+        } else {
+
+            $products = Product::orderBy('id','asc')->get();
+        }
+
+        return view('product', compact('products','categories'));
+    }
+
     public function show($id)
     {
         $product = Product::find($id);
