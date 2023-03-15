@@ -15,9 +15,10 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item {{ (request()->is('product')) ? 'active' : '' }}">
-                            <a href="{{route('product', ['id' => $category->id]) }}" class="nav-link" role="button" aria-haspopup="true"
-                               aria-expanded="false">Product</a>
+                        <li class="nav-item {{ (request()->is('product.index')) ? 'active' : '' }}">
+
+                            <a href="{{route('product.index')}}" class="nav-link" 
+                               >Product</a>
                         </li>
                         <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                     </ul>
