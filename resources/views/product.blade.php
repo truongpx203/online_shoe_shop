@@ -225,7 +225,7 @@
             });
         });
         $('#changeShow').on('change' , function (){
-            alert(listItems.length);
+            // alert(listItems.length);
             listItems.forEach((item, index) => {
                 item.classList.add("hidden");
                 if (index < this.value) {

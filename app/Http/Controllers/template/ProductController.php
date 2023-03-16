@@ -112,7 +112,7 @@ class ProductController extends Controller
         if (!empty($request->input('action')) && $request->input('action') == 'postToConfirm') {
             return view('confirm_cart');
         }
-        if($request->id and $request->qty) {
+        if($request->id and $request->qty || $request->qty != 0) {
             $newa = array_combine($request->id , $request->qty);
             $cart = session()->get('cart');
             foreach ($newa as $key => $value){

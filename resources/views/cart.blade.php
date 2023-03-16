@@ -144,7 +144,7 @@
             </div>
         @else
             <div class="d-flex justify-content-center">
-                <h3>This cart is empty. <a href="{{ route('product') }}">Buy Now!</a></h3>
+                <h3>This cart is empty. <a href="{{ route('products.index') }}">Buy Now!</a></h3>
             </div>
         @endif
     </section>
